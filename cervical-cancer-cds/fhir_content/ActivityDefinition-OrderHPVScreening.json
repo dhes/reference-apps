@@ -1,0 +1,78 @@
+{
+  "resourceType": "ActivityDefinition",
+  "id": "OrderHPVScreening",
+  "url": "https://hopenahealth.com/fhir/cervical-cancer-cds/ActivityDefinition/OrderHPVScreening",
+  "version": "0.1.0",
+  "name": "OrderHPVScreening",
+  "title": "Order HPV DNA Screening Test",
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-05-01",
+  "publisher": "Hopena Health",
+  "contact": [
+    {
+      "name": "Dan Heslinga",
+      "telecom": [{ "system": "url", "value": "https://hopenahealth.com" }]
+    }
+  ],
+  "description": "Activity template for ordering an HPV DNA screening test as the primary cervical cancer screen, per WHO Algorithm 5. Instantiated by the CervicalCancerScreening PlanDefinition when a patient is eligible and due for screening.",
+  "useContext": [
+    {
+      "code": {
+        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
+        "code": "focus",
+        "display": "Clinical Focus"
+      },
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": "243877001",
+            "display": "Cancer cervix screening"
+          }
+        ]
+      }
+    }
+  ],
+  "jurisdiction": [
+    {
+      "coding": [
+        {
+          "system": "http://unstats.un.org/unsd/methods/m49/m49.htm",
+          "code": "001",
+          "display": "World"
+        }
+      ]
+    }
+  ],
+  "purpose": "Provide a canonical template for the act of ordering an HPV DNA test as part of cervical cancer screening, suitable for the proposal phase of the FHIR CPG Activity Flow.",
+  "copyright": "Copyright 2026 Hopena Health. License: Apache 2.0",
+  "relatedArtifact": [
+    {
+      "type": "derived-from",
+      "label": "WHO Recommendation 1 / 21",
+      "url": "https://www.who.int/publications/i/item/9789240030824",
+      "display": "WHO Rec 1 (general population) / Rec 21 (WLHIV): Use HPV DNA detection as the primary screening test"
+    }
+  ],
+  "kind": "CommunicationRequest",
+  "profile": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-communicationrequest",
+  "intent": "proposal",
+  "priority": "routine",
+  "code": {
+    "coding": [
+      {
+        "system": "https://cielterminology.org",
+        "code": "170145",
+        "display": "HPV DNA detection"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "415300000",
+        "display": "Human papillomavirus DNA test"
+      }
+    ],
+    "text": "HPV DNA test"
+  },
+  "doNotPerform": false
+}

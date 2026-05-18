@@ -1,0 +1,83 @@
+{
+  "resourceType": "ActivityDefinition",
+  "id": "OrderCervicalTreatment",
+  "url": "https://hopenahealth.com/fhir/cervical-cancer-cds/ActivityDefinition/OrderCervicalTreatment",
+  "version": "0.1.0",
+  "name": "OrderCervicalTreatment",
+  "title": "Order Cervical Pre-Cancer Treatment",
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-05-01",
+  "publisher": "Hopena Health",
+  "contact": [
+    {
+      "name": "Dan Heslinga",
+      "telecom": [{ "system": "url", "value": "https://hopenahealth.com" }]
+    }
+  ],
+  "description": "Activity template for ordering treatment of cervical pre-cancer lesions following a positive triage result, per WHO Algorithm 5. The proposal is generic; the specific modality (thermal ablation, cryotherapy, LEEP, or excision) is selected at the plan/order phase based on ablation eligibility, lesion size, and CIN grade per the CervicalCancerTreatment PlanDefinition logic.",
+  "useContext": [
+    {
+      "code": {
+        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
+        "code": "focus",
+        "display": "Clinical Focus"
+      },
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": "243877001",
+            "display": "Cancer cervix screening"
+          }
+        ]
+      }
+    }
+  ],
+  "jurisdiction": [
+    {
+      "coding": [
+        {
+          "system": "http://unstats.un.org/unsd/methods/m49/m49.htm",
+          "code": "001",
+          "display": "World"
+        }
+      ]
+    }
+  ],
+  "purpose": "Provide a canonical template for the act of ordering treatment of cervical pre-cancer lesions, suitable for the proposal phase of the FHIR CPG Activity Flow. Modality refinement (ablation vs. excision) occurs in the downstream plan/order transitions.",
+  "copyright": "Copyright 2026 Hopena Health. License: Apache 2.0",
+  "relatedArtifact": [
+    {
+      "type": "derived-from",
+      "label": "WHO Recommendations 9-13 / 29-33",
+      "url": "https://www.who.int/publications/i/item/9789240030824",
+      "display": "WHO Recs 9-13 (general population) / Recs 29-33 (WLHIV): Treatment options including thermal ablation, cryotherapy, and LLETZ (LEEP) for screen-triage-positive women"
+    }
+  ],
+  "kind": "CommunicationRequest",
+  "profile": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-communicationrequest",
+  "intent": "proposal",
+  "priority": "urgent",
+  "code": {
+    "coding": [
+      {
+        "system": "https://cielterminology.org",
+        "code": "166706",
+        "display": "Thermocauterization of cervix"
+      },
+      {
+        "system": "https://cielterminology.org",
+        "code": "162812",
+        "display": "Cryosurgery of lesion of cervix"
+      },
+      {
+        "system": "https://cielterminology.org",
+        "code": "165084",
+        "display": "LEEP of cervix"
+      }
+    ],
+    "text": "Cervical pre-cancer treatment (modality TBD: thermal ablation, cryotherapy, or LEEP)"
+  },
+  "doNotPerform": false
+}

@@ -1,0 +1,78 @@
+{
+  "resourceType": "ActivityDefinition",
+  "id": "OrderVIATriage",
+  "url": "https://hopenahealth.com/fhir/cervical-cancer-cds/ActivityDefinition/OrderVIATriage",
+  "version": "0.1.0",
+  "name": "OrderVIATriage",
+  "title": "Order VIA Triage After Positive HPV",
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-05-01",
+  "publisher": "Hopena Health",
+  "contact": [
+    {
+      "name": "Dan Heslinga",
+      "telecom": [{ "system": "url", "value": "https://hopenahealth.com" }]
+    }
+  ],
+  "description": "Activity template for ordering Visual Inspection with Acetic acid (VIA) as the triage step after a positive HPV DNA result, per WHO Algorithm 5. Instantiated by the CervicalCancerTriage PlanDefinition when triage is indicated.",
+  "useContext": [
+    {
+      "code": {
+        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
+        "code": "focus",
+        "display": "Clinical Focus"
+      },
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": "243877001",
+            "display": "Cancer cervix screening"
+          }
+        ]
+      }
+    }
+  ],
+  "jurisdiction": [
+    {
+      "coding": [
+        {
+          "system": "http://unstats.un.org/unsd/methods/m49/m49.htm",
+          "code": "001",
+          "display": "World"
+        }
+      ]
+    }
+  ],
+  "purpose": "Provide a canonical template for the act of ordering a VIA examination as triage following a positive HPV result, suitable for the proposal phase of the FHIR CPG Activity Flow.",
+  "copyright": "Copyright 2026 Hopena Health. License: Apache 2.0",
+  "relatedArtifact": [
+    {
+      "type": "derived-from",
+      "label": "WHO Recommendation 8 / 28",
+      "url": "https://www.who.int/publications/i/item/9789240030824",
+      "display": "WHO Rec 8 (general population) / Rec 28 (WLHIV): VIA as triage following positive HPV in the screen-triage-and-treat approach"
+    }
+  ],
+  "kind": "CommunicationRequest",
+  "profile": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-communicationrequest",
+  "intent": "proposal",
+  "priority": "routine",
+  "code": {
+    "coding": [
+      {
+        "system": "https://cielterminology.org",
+        "code": "151185",
+        "display": "Screening for malignant neoplasm of cervix"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "440623000",
+        "display": "Visual inspection of cervix with acetic acid"
+      }
+    ],
+    "text": "VIA triage examination"
+  },
+  "doNotPerform": false
+}

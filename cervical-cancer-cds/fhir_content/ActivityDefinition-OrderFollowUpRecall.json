@@ -1,0 +1,73 @@
+{
+  "resourceType": "ActivityDefinition",
+  "id": "OrderFollowUpRecall",
+  "url": "https://hopenahealth.com/fhir/cervical-cancer-cds/ActivityDefinition/OrderFollowUpRecall",
+  "version": "0.1.0",
+  "name": "OrderFollowUpRecall",
+  "title": "Schedule Follow-Up Recall for Cervical Screening",
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-05-01",
+  "publisher": "Hopena Health",
+  "contact": [
+    {
+      "name": "Dan Heslinga",
+      "telecom": [{ "system": "url", "value": "https://hopenahealth.com" }]
+    }
+  ],
+  "description": "Activity template for scheduling a follow-up recall task for cervical cancer screening — the operational artifact behind both post-treatment retest scheduling, post-triage-negative retest scheduling, and routine interval recalls. Instantiated by the CervicalCancerFollowUp PlanDefinition. Distinct from clinical orders (HPV/VIA/Treatment) in that this is a clerical scheduling task carried forward by the outreach team rather than a service request executed by a provider.",
+  "useContext": [
+    {
+      "code": {
+        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
+        "code": "focus",
+        "display": "Clinical Focus"
+      },
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": "243877001",
+            "display": "Cancer cervix screening"
+          }
+        ]
+      }
+    }
+  ],
+  "jurisdiction": [
+    {
+      "coding": [
+        {
+          "system": "http://unstats.un.org/unsd/methods/m49/m49.htm",
+          "code": "001",
+          "display": "World"
+        }
+      ]
+    }
+  ],
+  "purpose": "Provide a canonical template for the act of scheduling a follow-up recall task, suitable for the proposal phase of the FHIR CPG Activity Flow. The follow-up interval (e.g., 12 months post-triage-negative, 6 months post-treatment, or 3-5 years for routine recall) is set by the calling PlanDefinition action via dynamicValue on Task.restriction.period.",
+  "copyright": "Copyright 2026 Hopena Health. License: Apache 2.0",
+  "relatedArtifact": [
+    {
+      "type": "derived-from",
+      "label": "WHO Recommendations 14 / 34 (and Algorithm 5 follow-up cadence)",
+      "url": "https://www.who.int/publications/i/item/9789240030824",
+      "display": "WHO Rec 14 (general) / Rec 34 (WLHIV): Re-screen at recommended intervals; post-treatment and post-triage-negative cadences specified in Algorithm 5 follow-up arms"
+    }
+  ],
+  "kind": "CommunicationRequest",
+  "profile": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-communicationrequest",
+  "intent": "proposal",
+  "priority": "routine",
+  "code": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "390906007",
+        "display": "Follow-up encounter"
+      }
+    ],
+    "text": "Cervical cancer screening follow-up recall"
+  },
+  "doNotPerform": false
+}
