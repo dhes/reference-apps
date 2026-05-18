@@ -1,0 +1,18 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "check-screening-eligibility",
+  "url": "https://hopenahealth.com/fhir/cervical-cancer-cds/Questionnaire/check-screening-eligibility",
+  "version": "0.1.0",
+  "name": "CheckScreeningEligibility",
+  "title": "Cervical Cancer Screening Assessment",
+  "status": "active",
+  "subjectType": ["Patient"],
+  "description": "Trigger Questionnaire — submits with no input. The associated PlanDefinition (CervicalCancerScreening) evaluates the Library CervicalCancerScreeningDecision against the selected Patient and creates a CarePlan if Is Eligible For Screening is true.",
+  "item": [
+    {
+      "linkId": "info",
+      "type": "display",
+      "text": "Submitting will evaluate cervical cancer screening eligibility for this patient using the CervicalCancerScreening PlanDefinition."
+    }
+  ]
+}

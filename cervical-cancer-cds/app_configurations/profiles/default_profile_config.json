@@ -1,0 +1,146 @@
+{
+  "appId": "cervical-cancer-cds",
+  "configType": "profile",
+  "id": "defaultProfile",
+  "fhirResource": {
+    "baseResource": {
+      "resource": "Patient"
+    },
+    "relatedResources": [
+      {
+        "id": "availableCarePlans",
+        "resource": "CarePlan",
+        "searchParameter": "subject"
+      }
+    ]
+  },
+  "rules": [
+    {
+      "name": "patientId",
+      "condition": "true",
+      "actions": [
+        "data.put('patientId', fhirPath.extractValue(Patient, 'Patient.id'))"
+      ]
+    },
+    {
+      "name": "patientName",
+      "condition": "true",
+      "actions": [
+        "data.put('patientName', fhirPath.extractValue(Patient, \"Patient.name.where(use='official').select(given.first() + ' ' + family)\"))"
+      ]
+    },
+    {
+      "name": "patientAge",
+      "condition": "true",
+      "actions": [
+        "data.put('patientAge', service.extractAge(Patient))"
+      ]
+    },
+    {
+      "name": "patientGender",
+      "condition": "true",
+      "actions": [
+        "data.put('patientGender', fhirPath.extractValue(Patient, 'Patient.gender'))"
+      ]
+    }
+  ],
+  "views": [
+    {
+      "viewType": "COLUMN",
+      "children": [
+        {
+          "viewType": "COMPOUND_TEXT",
+          "primaryText": "@{patientName}",
+          "primaryTextColor": "#000000"
+        },
+        {
+          "viewType": "COMPOUND_TEXT",
+          "primaryText": "Age: @{patientAge} • @{patientGender}",
+          "primaryTextColor": "#555555"
+        },
+        {
+          "viewType": "SPACER",
+          "height": 16
+        },
+        {
+          "viewType": "BUTTON",
+          "text": "Run screening eligibility check",
+          "status": "DUE",
+          "smallSized": false,
+          "actions": [
+            {
+              "trigger": "ON_CLICK",
+              "workflow": "LAUNCH_QUESTIONNAIRE",
+              "questionnaire": {
+                "id": "check-screening-eligibility",
+                "title": "Cervical Cancer Screening Assessment",
+                "saveButtonText": "Submit",
+                "resourceIdentifier": "@{patientId}",
+                "planDefinitions": ["CervicalCancerScreening"],
+                "generateCarePlanWithWorkflowApi": true,
+                "setPractitionerDetails": true,
+                "setOrganizationDetails": true
+              }
+            }
+          ]
+        },
+        {
+          "viewType": "SPACER",
+          "height": 16
+        },
+        {
+          "viewType": "COMPOUND_TEXT",
+          "primaryText": "Care plans",
+          "primaryTextColor": "#000000"
+        },
+        {
+          "viewType": "LIST",
+          "id": "carePlanList",
+          "baseResource": "CarePlan",
+          "resources": [
+            {
+              "id": "carePlans",
+              "relatedResourceId": "availableCarePlans",
+              "resourceType": "CarePlan"
+            }
+          ],
+          "registerCard": {
+            "rules": [
+              {
+                "name": "carePlanTitle",
+                "condition": "true",
+                "actions": [
+                  "data.put('carePlanTitle', fhirPath.extractValue(CarePlan, 'CarePlan.title'))"
+                ]
+              },
+              {
+                "name": "carePlanStatus",
+                "condition": "true",
+                "actions": [
+                  "data.put('carePlanStatus', fhirPath.extractValue(CarePlan, 'CarePlan.status'))"
+                ]
+              }
+            ],
+            "views": [
+              {
+                "viewType": "COLUMN",
+                "children": [
+                  {
+                    "viewType": "COMPOUND_TEXT",
+                    "primaryText": "@{carePlanTitle}",
+                    "primaryTextColor": "#000000"
+                  },
+                  {
+                    "viewType": "COMPOUND_TEXT",
+                    "primaryText": "Status: @{carePlanStatus}",
+                    "primaryTextColor": "#555555"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

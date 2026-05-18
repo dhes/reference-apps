@@ -1,0 +1,125 @@
+{
+  "resourceType": "Composition",
+  "id": "cervical-cancer-cds-composition",
+  "identifier": {
+    "use": "official",
+    "value": "cervical-cancer-cds"
+  },
+  "status": "final",
+  "type": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "1156600005",
+        "display": "Device setting parameter"
+      }
+    ]
+  },
+  "date": "2026-05-18",
+  "title": "Cervical Cancer CDS app config",
+  "confidentiality": "L",
+  "section": [
+    {
+      "title": "Application configuration",
+      "mode": "working",
+      "focus": {
+        "reference": "Binary/cccds-application-binary",
+        "identifier": { "value": "application" }
+      }
+    },
+    {
+      "title": "Navigation configuration",
+      "mode": "working",
+      "focus": {
+        "reference": "Binary/cccds-navigation-binary",
+        "identifier": { "value": "navigation" }
+      }
+    },
+    {
+      "title": "Sync configuration",
+      "mode": "working",
+      "focus": {
+        "reference": "Binary/cccds-sync-binary",
+        "identifier": { "value": "sync" }
+      }
+    },
+    {
+      "title": "Register configurations",
+      "mode": "working",
+      "section": [
+        {
+          "title": "Eligible Patients Register",
+          "mode": "working",
+          "focus": {
+            "reference": "Binary/cccds-eligible-register-binary",
+            "identifier": { "value": "eligiblePatientsRegister" }
+          }
+        }
+      ]
+    },
+    {
+      "title": "Profile configurations",
+      "mode": "working",
+      "section": [
+        {
+          "title": "Default Profile",
+          "mode": "working",
+          "focus": {
+            "reference": "Binary/cccds-default-profile-binary",
+            "identifier": { "value": "defaultProfile" }
+          }
+        }
+      ]
+    },
+    {
+      "title": "Libraries",
+      "mode": "working",
+      "section": [
+        {
+          "title": "Screening Common Library",
+          "mode": "working",
+          "focus": {
+            "reference": "Library/CervicalCancerScreeningCommon",
+            "identifier": { "value": "cervical-cancer-screening-common" }
+          }
+        },
+        {
+          "title": "Screening Decision Library",
+          "mode": "working",
+          "focus": {
+            "reference": "Library/CervicalCancerScreeningDecision",
+            "identifier": { "value": "cervical-cancer-screening-decision" }
+          }
+        }
+      ]
+    },
+    {
+      "title": "PlanDefinitions",
+      "mode": "working",
+      "section": [
+        {
+          "title": "Cervical Cancer Screening PlanDefinition",
+          "mode": "working",
+          "focus": {
+            "reference": "PlanDefinition/CervicalCancerScreening",
+            "identifier": { "value": "cervical-cancer-screening" }
+          }
+        }
+      ]
+    },
+    {
+      "title": "Questionnaires",
+      "mode": "working",
+      "section": [
+        {
+          "title": "Check Screening Eligibility",
+          "mode": "working",
+          "focus": {
+            "reference": "Questionnaire/check-screening-eligibility",
+            "identifier": { "value": "check-screening-eligibility" }
+          }
+        }
+      ]
+    }
+  ]
+}

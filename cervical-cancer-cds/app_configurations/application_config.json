@@ -1,0 +1,20 @@
+{
+  "appId": "cervical-cancer-cds",
+  "configType": "application",
+  "theme": "DEFAULT",
+  "appTitle": "Cervical Cancer Screening CDS",
+  "remoteSyncPageSize": 250,
+  "languages": ["en"],
+  "useDarkTheme": false,
+  "syncInterval": 30,
+  "syncStrategy": ["Location"],
+  "loginConfig": {
+    "showLogo": true,
+    "enablePin": true,
+    "pinLength": 4
+  },
+  "settingsScreenMenuOptions": [
+    "MANUAL_SYNC",
+    "RESET_DATA"
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "appId": "cervical-cancer-cds",
+  "configType": "register",
+  "id": "eligiblePatientsRegister",
+  "fhirResource": {
+    "baseResource": {
+      "resource": "Patient"
+    }
+  },
+  "searchBar": {
+    "visible": true,
+    "display": "Search by name",
+    "computedRules": ["patientName"]
+  },
+  "registerCard": {
+    "rules": [
+      {
+        "name": "patientName",
+        "condition": "true",
+        "actions": [
+          "data.put('patientName', fhirPath.extractValue(Patient, \"Patient.name.where(use='official').select(given.first() + ' ' + family)\"))"
+        ]
+      },
+      {
+        "name": "patientAge",
+        "condition": "true",
+        "actions": [
+          "data.put('patientAge', service.extractAge(Patient))"
+        ]
+      },
+      {
+        "name": "patientGender",
+        "condition": "true",
+        "actions": [
+          "data.put('patientGender', fhirPath.extractValue(Patient, 'Patient.gender'))"
+        ]
+      }
+    ],
+    "views": [
+      {
+        "viewType": "COLUMN",
+        "children": [
+          {
+            "viewType": "SERVICE_CARD",
+            "details": [
+              {
+                "viewType": "COMPOUND_TEXT",
+                "primaryText": "@{patientName}",
+                "primaryTextColor": "#000000"
+              },
+              {
+                "viewType": "COMPOUND_TEXT",
+                "primaryText": "Age: @{patientAge} • @{patientGender}",
+                "fontSize": 14.0,
+                "primaryTextColor": "#555555"
+              }
+            ],
+            "showVerticalDivider": false,
+            "actions": [
+              {
+                "trigger": "ON_CLICK",
+                "workflow": "LAUNCH_PROFILE",
+                "id": "defaultProfile"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "noResults": {
+    "title": "No patients to load",
+    "message": "Sync, or pre-load patients via the HAPI seed script."
+  }
+}

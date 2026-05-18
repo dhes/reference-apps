@@ -1,0 +1,32 @@
+{
+  "appId": "cervical-cancer-cds",
+  "configType": "navigation",
+  "menuActionButton": {
+    "id": "noop",
+    "visible": false,
+    "display": "",
+    "actions": []
+  },
+  "clientRegisters": [
+    {
+      "id": "eligiblePatientsRegister",
+      "display": "Patients",
+      "showCount": true,
+      "menuIconConfig": {
+        "type": "local",
+        "reference": "ic_app_logo"
+      },
+      "actions": [
+        {
+          "trigger": "ON_CLICK",
+          "workflow": "LAUNCH_REGISTER",
+          "id": "eligiblePatientsRegister"
+        },
+        {
+          "trigger": "ON_COUNT",
+          "id": "eligiblePatientsRegister"
+        }
+      ]
+    }
+  ]
+}
