@@ -96,28 +96,40 @@
         {
           "viewType": "LIST",
           "id": "carePlanList",
-          "baseResource": "CarePlan",
           "resources": [
             {
-              "id": "carePlans",
+              "id": "availableCarePlans",
               "relatedResourceId": "availableCarePlans",
               "resourceType": "CarePlan"
             }
           ],
+          "emptyList": {
+            "message": "No care plans yet. Tap 'Run screening eligibility check' to generate one."
+          },
           "registerCard": {
             "rules": [
               {
                 "name": "carePlanTitle",
                 "condition": "true",
+                "priority": 1,
                 "actions": [
-                  "data.put('carePlanTitle', fhirPath.extractValue(CarePlan, 'CarePlan.title'))"
+                  "data.put('carePlanTitle', fhirPath.extractValue(availableCarePlans, 'CarePlan.title'))"
                 ]
               },
               {
                 "name": "carePlanStatus",
                 "condition": "true",
+                "priority": 1,
                 "actions": [
-                  "data.put('carePlanStatus', fhirPath.extractValue(CarePlan, 'CarePlan.status'))"
+                  "data.put('carePlanStatus', fhirPath.extractValue(availableCarePlans, 'CarePlan.status'))"
+                ]
+              },
+              {
+                "name": "carePlanDescription",
+                "condition": "true",
+                "priority": 1,
+                "actions": [
+                  "data.put('carePlanDescription', fhirPath.extractValue(availableCarePlans, 'CarePlan.description'))"
                 ]
               }
             ],
@@ -128,12 +140,20 @@
                   {
                     "viewType": "COMPOUND_TEXT",
                     "primaryText": "@{carePlanTitle}",
-                    "primaryTextColor": "#000000"
+                    "primaryTextColor": "#000000",
+                    "fontSize": 16.0
                   },
                   {
                     "viewType": "COMPOUND_TEXT",
                     "primaryText": "Status: @{carePlanStatus}",
-                    "primaryTextColor": "#555555"
+                    "primaryTextColor": "#555555",
+                    "fontSize": 13.0
+                  },
+                  {
+                    "viewType": "COMPOUND_TEXT",
+                    "primaryText": "@{carePlanDescription}",
+                    "primaryTextColor": "#333333",
+                    "fontSize": 13.0
                   }
                 ]
               }
